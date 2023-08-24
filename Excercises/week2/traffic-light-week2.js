@@ -1,5 +1,7 @@
 function getCurrentState(trafficLight) {
-  return trafficLight.possibleStates[trafficLight.stateIndex % 3];
+  return trafficLight.possibleStates[
+    trafficLight.stateIndex % trafficLight.possibleStates.length
+  ];
 }
 
 function getNextStateIndex(trafficLight) {

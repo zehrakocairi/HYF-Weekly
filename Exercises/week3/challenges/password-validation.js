@@ -20,3 +20,30 @@ const passwordList = [
   { times: "1-3", letter: "b", password: "cdefg" },
   { times: "2-9", letter: "c", password: "ccccccccc" },
 ];
+
+passwordList.forEach((eachPassword, index) => {
+  let time = [];
+  eachPassword.times.split("-").forEach((s) => {
+    time.push(+s);
+    passwordList[index].times = time;
+  });
+});
+
+let result = [];
+passwordList.forEach((eachPassword) => {
+  let letterInPassword = eachPassword.password
+    .split("")
+    .filter((p) => p === eachPassword.letter);
+  if (
+    letterInPassword.length >= eachPassword.times[0] &&
+    letterInPassword.length <= eachPassword.times[1]
+  ) {
+    return result.push(
+      `${eachPassword.password} is VALID, ${eachPassword.letter} is present ${letterInPassword.length} times and should have been present at least ${eachPassword.times[0]} and at most ${eachPassword.times[1]} times`
+    );
+  } else
+    return result.push(
+      `${eachPassword.password} is INVALID, ${eachPassword.letter} is present ${letterInPassword.length} times and should have been present at least ${eachPassword.times[0]} and at most ${eachPassword.times[1]} times`
+    );
+});
+console.log(result);

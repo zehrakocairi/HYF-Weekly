@@ -17,14 +17,13 @@ const INVALID_URL = "https://pokeapi.co/api/v2/pokemons/?limit=5";
 
 async function fetchJSON(url) {
   try {
-    return await fetch(url).then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `Error happened while calling url. Status:${response.status}`
-        );
-      }
-      return response.json();
-    });
+    let response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `Error happened while calling url. Status:${response.status}`
+      );
+    }
+    return response.json();
   } catch (err) {
     throw err;
   }
@@ -55,13 +54,16 @@ function renderError(err) {
 
 function main() {
   const button = document.querySelector("#button");
-  button.addEventListener("click", () => {
+  button.addEventListener("click", async () => {
     const option = document.querySelector("#option");
     const url = option.checked ? INVALID_URL : VALID_URL;
 
-    fetchJSON(url)
-      .then((data) => renderResults(data))
-      .catch((err) => renderError(err));
+    try {
+      let data = await fetchJSON(url);
+      renderResults(data);
+    } catch (err) {
+      renderError(err.message);
+    }
   });
 }
 

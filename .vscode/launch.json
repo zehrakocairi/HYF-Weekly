@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/Exercises/Node.js/week1/server.js"
+            "program": "${workspaceFolder}/Exercises/Node.js/week2-blog-API/server.js"
         }
     ]
 }

@@ -5,7 +5,7 @@ left join step on  recipe.id = step.recipe_id
 left join ingredient on step.id = ingredient.step_id
 where category.name = "Vegetarian" and ingredient.name = "Condensed milk",
 
-select recipe.* from recipe
+select distinct recipe.* from recipe
 left join recipe_category on recipe.id = recipe_category.recipe_id
 left join category on recipe_category.category_id = category.id
 left join step on  recipe.id = step.recipe_id 
